@@ -2,6 +2,7 @@ version: "3.7"
 name: redpanda-quickstart-one-broker
 networks:
   redpanda_network:
+    name: redpanda_network
     driver: bridge
 volumes:
   redpanda-0: null

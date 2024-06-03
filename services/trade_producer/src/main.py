@@ -26,6 +26,8 @@ def produce_trades(
     # Create an instance of the Kraken API
     kraken_api = KrakenWebsocketTradeAPI(product_id='BTC/USD')
 
+    print('Creating the producer...')
+
     # Create a Producer instance
     with app.get_producer() as producer:
 
@@ -33,7 +35,8 @@ def produce_trades(
 
             # Get the trades from the Kraken API
             trades : List[Dict] = kraken_api.get_trades()
-
+            print('Got trades from Kraken')
+            
             for trade in trades:
 
                 # Serialize an event using the defined Topic 
@@ -55,6 +58,6 @@ def produce_trades(
 if __name__ == '__main__':
 
     produce_trades(
-        kaka_broker_address="localhost:19092",
+        kaka_broker_address="redpanda-0:9092",
         kaka_topic_name="trade"
     )
